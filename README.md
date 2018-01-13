@@ -24,12 +24,12 @@ This can be used for example if you want to download a package to install it on 
 
 Download 'nano' for Ubuntu xenial (16.04)
 ```
-./deb-downloader.sh -m http://archive.ubuntu.com/ubuntu/ -d xenial -a amd64 -p nano
+./deb-downloader.sh -m http://archive.ubuntu.com/ubuntu/ -d xenial -p nano
 ```
 
-Download 'gimp' for Ubuntu artful (17.10) using the 'universe' component
+Download 'gimp' for Ubuntu artful (17.10) using the 'universe' component for i386 systems
 ```
-./deb-downloader.sh -m http://archive.ubuntu.com/ubuntu/ -d artful -c universe -a amd64 -p gimp
+./deb-downloader.sh -m http://archive.ubuntu.com/ubuntu/ -d artful -c universe -a i386 -p gimp
 ```
 
 Download 'ntp' for Raspbian Stretch using the default Raspbian repo settings and including all dependencies
