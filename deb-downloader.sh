@@ -20,6 +20,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
+# defaults
+MIRROR=""
+DIST=""
+COMPONENTS="main"
+ARCHITECTURE="amd64"
+PACKAGE=""
+LOAD_DEPENDS=0
+TEST=0
+
 # function to display the help text
 function showHelp {
   cat <<EOD
@@ -46,15 +55,6 @@ Examples:
   $0 -m http://archive.raspbian.org/raspbian/ -d stretch -c "main contrib non-free rpi" -a armhf -p ntp -D
 EOD
 }
-
-# defaults
-MIRROR=""
-DIST=""
-COMPONENTS="main"
-ARCHITECTURE="amd64"
-PACKAGE=""
-LOAD_DEPENDS=0
-TEST=0
 
 # function to download the repository index files
 function downloadIndex {
