@@ -9,12 +9,12 @@
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
@@ -69,7 +69,7 @@ function downloadIndex {
     if [ -e "$LOCAL_PACKAGES" ]; then
       echo "Index for $DIST $COMP already downloaded."
     else
-      wget -nv -O "$LOCAL_PACKAGES.gz" "$PACKAGES"
+      wget -nv --show-progress -O "$LOCAL_PACKAGES.gz" "$PACKAGES"
       if [ $? -ne 0 ]; then
         echo "!!! Download of index for $DIST $COMP failed!"
         exit 1
@@ -127,7 +127,7 @@ function packageDownload {
     echo "File $BASENAME for $PACKAGE_NAME already downloaded."
   else
     if [ $TEST -eq 0 ]; then
-      wget -nv -O $BASENAME "$DOWNLOAD_LINK"
+      wget -nv --show-progress -O $BASENAME "$DOWNLOAD_LINK"
     else
       echo "Would download $DOWNLOAD_LINK"
       return 0
@@ -155,6 +155,14 @@ function main {
   echo "#       https://crycode.de        #"
   echo "###################################"
   echo
+
+  # check own dependencies
+  for i in wget grep gunzip sha256sum cat cut basename; do
+    if [ -z "$(which $i)" ]; then
+      echo "$i is needed to use this script, but it is not found. Please install it and try again."
+      exit 1
+    fi
+  done
 
   # show help if no arguments given
   if [ -z "$1" ]; then
